@@ -1,6 +1,15 @@
 package mazdarunner.weldingMagazine.Weld;
 
+import jakarta.persistence.*;
+
+import java.util.UUID;
+
+@Entity
+@Table(name = "weldings")
 public class Weld {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     private String name;
     private int price;
     private int maxPower;
@@ -9,12 +18,26 @@ public class Weld {
 
     }
 
+    public Weld(UUID id, String name, int price, int maxPower) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.maxPower = maxPower;
+    }
+
     public Weld(String name, int price, int maxPower) {
         this.name = name;
         this.price = price;
         this.maxPower = maxPower;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }
@@ -42,7 +65,8 @@ public class Weld {
     @Override
     public String toString() {
         return "Weld{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", price=" + price +
                 ", maxPower=" + maxPower +
                 '}';

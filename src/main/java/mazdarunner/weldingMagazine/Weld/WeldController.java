@@ -1,23 +1,34 @@
 package mazdarunner.weldingMagazine.Weld;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "/weld")
 public class WeldController {
 
-    private WeldService weldService = new WeldService();
+    private final WeldService weldService;
 
     @Autowired
     public WeldController(WeldService weldService) { //зачем чел создал конструктор?
         this.weldService = weldService;
     }
 
-    @GetMapping("/showinfo")
-    public Weld showInfo(){
-        return weldService.showInfo();
+    @GetMapping("/showallwelds")
+    public List<Weld> showAllWelds(){
+        return weldService.showAllWelds();
+    }
+
+    @PostMapping("/addweld")
+    public void addWeld(@RequestBody Weld weld){
+        weldService.addWeld(weld);
+    }
+
+    @DeleteMapping(path = "/delete/{weldId}")
+    public void deleteWeldByID(@PathVariable("weldId") UUID weldId){
+        weldService.deleteWeldByID(weldId);
     }
 }
