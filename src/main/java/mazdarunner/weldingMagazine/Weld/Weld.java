@@ -14,22 +14,6 @@ public class Weld {
     private int price;
     private int maxPower;
 
-    public Weld() {
-
-    }
-
-    public Weld(UUID id, String name, int price, int maxPower) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.maxPower = maxPower;
-    }
-
-    public Weld(String name, int price, int maxPower) {
-        this.name = name;
-        this.price = price;
-        this.maxPower = maxPower;
-    }
 
     public UUID getId() {
         return id;

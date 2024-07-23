@@ -22,6 +22,10 @@ public class WeldService {
         return weldRepository.findAll();
     }
 
+    public Weld showWeld(UUID id){
+        return weldRepository.findById(id).orElseThrow(() -> new IllegalStateException("Сварочный аппарат с ID " + id + " не найден"));
+    }
+
     public void addWeld(Weld weld){
         weldRepository.save(weld);
     }
@@ -32,21 +36,6 @@ public class WeldService {
             weldRepository.deleteById(weldId);
         } else {
             System.out.println("No such welding in database!");
-        }
-    }
-
-    @Transactional
-    public void updateWeldByID(UUID weldId, String name, Integer price, Integer maxPower){
-        Weld weld = weldRepository.findById(weldId).orElseThrow(() -> new IllegalStateException("Сварочный аппарат с ID " + weldId + " не найден"));
-
-        if (name != null && !Objects.equals(weld.getName(),name)){
-            weld.setName(name);
-        }
-        if (price != null && price != weld.getPrice()){
-            weld.setPrice(price);
-        }
-        if (maxPower != null && maxPower != weld.getMaxPower()){
-            weld.setMaxPower(maxPower);
         }
     }
 

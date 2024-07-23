@@ -18,27 +18,30 @@ public class WeldRestController {
         this.weldService = weldService;
     }
 
-    @GetMapping("/showallwelds")
+
+    @GetMapping
     public List<Weld> showAllWelds(){
         return weldService.showAllWelds();
     }
 
-    @PostMapping("/addweld")
+    @GetMapping(path = "/{id}")
+    public Weld showWeld(@PathVariable("id") UUID id){
+        return weldService.showWeld(id);
+    }
+
+    @PostMapping
     public void addWeld(@RequestBody Weld weld){
         weldService.addWeld(weld);
     }
 
-    @DeleteMapping(path = "/delete/{weldId}")
+    @DeleteMapping(path = "/{weldId}")
     public void deleteWeldByID(@PathVariable("weldId") UUID weldId){
         weldService.deleteWeldByID(weldId);
     }
 
-    @PutMapping(path = "/edit/{weldId}")
-    public void editWeldByID(@PathVariable("weldId") UUID weldId,
-                             @RequestParam(required = false) String name,
-                             @RequestParam(required = false) Integer price,
-                             @RequestParam(required = false) Integer maxPower){
-        weldService.updateWeldByID(weldId, name, price, maxPower);
+    @PutMapping
+    public void editWeldByID(@RequestBody Weld weld){
+        weldService.addWeld(weld);
     }
 
 }
