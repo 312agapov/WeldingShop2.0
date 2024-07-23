@@ -1,9 +1,11 @@
 package mazdarunner.weldingMagazine.Weld;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -30,6 +32,21 @@ public class WeldService {
             weldRepository.deleteById(weldId);
         } else {
             System.out.println("No such welding in database!");
+        }
+    }
+
+    @Transactional
+    public void updateWeldByID(UUID weldId, String name, Integer price, Integer maxPower){
+        Weld weld = weldRepository.findById(weldId).orElseThrow(() -> new IllegalStateException("Сварочный аппарат с ID " + weldId + " не найден"));
+
+        if (name != null && !Objects.equals(weld.getName(),name)){
+            weld.setName(name);
+        }
+        if (price != null && price != weld.getPrice()){
+            weld.setPrice(price);
+        }
+        if (maxPower != null && maxPower != weld.getMaxPower()){
+            weld.setMaxPower(maxPower);
         }
     }
 

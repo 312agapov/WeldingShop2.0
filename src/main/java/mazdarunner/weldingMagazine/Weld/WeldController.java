@@ -31,4 +31,13 @@ public class WeldController {
     public void deleteWeldByID(@PathVariable("weldId") UUID weldId){
         weldService.deleteWeldByID(weldId);
     }
+
+    @PutMapping(path = "/edit/{weldId}")
+    public void editWeldByID(@PathVariable("weldId") UUID weldId,
+                             @RequestParam(required = false) String name,
+                             @RequestParam(required = false) Integer price,
+                             @RequestParam(required = false) Integer maxPower){
+        weldService.updateWeldByID(weldId, name, price, maxPower);
+    }
+
 }
