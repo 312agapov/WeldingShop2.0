@@ -6,8 +6,9 @@
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    Каталог сварочных аппаратов(от админа)
+
     <div class="add-weld">
+        Каталог сварочных аппаратов(от админа)
         <span><label for="name"> Название </label> <input id="name"/></span>
         <span><label for="price"> Цена </label> <input id="price" type="number"/></span>
         <span><label for="maxPower"> Мощность </label> <input id="maxPower" type="number"/></span>
@@ -15,6 +16,25 @@
         <span id="resultStatus"></span>
     </div>
 
-     <script src="script.js"></script>
+    <div class="show-welds">
+        Список всех сварочных аппаратов:
+        <table id="weldsTable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Название</th>
+                <th>Цена, руб.</th>
+                <th>Макс. мощность, А</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Rows will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <br><a href="index.html"> На главную</a>
+
+     <script src="adminscript.js"></script>
 </body>
 </html>

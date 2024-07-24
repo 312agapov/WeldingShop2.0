@@ -1,11 +1,11 @@
-package mazdarunner.weldingMagazine.Weld;
+package mazdarunner.weldingMagazine.service;
 
-import jakarta.transaction.Transactional;
+import mazdarunner.weldingMagazine.entity.Weld;
+import mazdarunner.weldingMagazine.repository.WeldRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 @Service
