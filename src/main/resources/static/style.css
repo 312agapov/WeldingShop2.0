@@ -4,3 +4,10 @@
     flex-direction: column;
     align-items: flex-end;
 }
+
+.edit-weld {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}

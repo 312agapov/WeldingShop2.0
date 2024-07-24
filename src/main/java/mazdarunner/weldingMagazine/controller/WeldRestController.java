@@ -11,14 +11,8 @@ import java.util.UUID;
 @RestController
 @RequestMapping(path = "/weld")
 public class WeldRestController {
-
-    private final WeldService weldService;
-
     @Autowired
-    public WeldRestController(WeldService weldService) { //зачем чел создал конструктор?
-        this.weldService = weldService;
-    }
-
+    private WeldService weldService;
 
     @GetMapping
     public List<Weld> showAllWelds(){
@@ -33,6 +27,7 @@ public class WeldRestController {
     @PostMapping
     public void addWeld(@RequestBody Weld weld){
         weldService.addWeld(weld);
+        //TODO: возвращать обертку responseEntity
     }
 
     @DeleteMapping(path = "/{weldId}")

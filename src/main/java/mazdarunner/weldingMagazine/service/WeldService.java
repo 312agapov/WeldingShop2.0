@@ -11,12 +11,8 @@ import java.util.UUID;
 @Service
 public class WeldService {
 
-    private final WeldRepository weldRepository;
-
     @Autowired
-    public WeldService(WeldRepository weldRepository) {
-        this.weldRepository = weldRepository;
-    }
+    private WeldRepository weldRepository;
 
     public List<Weld> showAllWelds(){
         return weldRepository.findAll();
@@ -27,7 +23,11 @@ public class WeldService {
     }
 
     public void addWeld(Weld weld){
-        weldRepository.save(weld);
+        if(weld.getName().isEmpty() || weld.getPrice() == 0 || weld.getMaxPower() == 0){
+            throw new IllegalStateException("Одно из введенных полей пустое!");
+        } else {
+            weldRepository.save(weld);
+        }
     }
 
     public void deleteWeldByID(UUID weldId){
